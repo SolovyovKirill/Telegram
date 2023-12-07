@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SvgHelper;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.DocumentObject;
+import org.telegram.solo.ImageLocation;
+import org.telegram.solo.MediaDataController;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 

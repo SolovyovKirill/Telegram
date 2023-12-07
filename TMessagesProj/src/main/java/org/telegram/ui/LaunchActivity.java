@@ -84,45 +84,45 @@ import com.google.firebase.appindexing.FirebaseUserActions;
 import com.google.firebase.appindexing.builders.AssistActionBuilder;
 
 import org.telegram.PhoneFormat.PhoneFormat;
-import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.AutoDeleteMediaTask;
-import org.telegram.messenger.BackupAgent;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.ContactsLoadingObserver;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.FingerprintController;
-import org.telegram.messenger.FlagSecureReason;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.PushListenerController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.TopicsController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.browser.Browser;
-import org.telegram.messenger.voip.VideoCapturerDevice;
-import org.telegram.messenger.voip.VoIPPendingCall;
-import org.telegram.messenger.voip.VoIPService;
+import org.telegram.solo.AccountInstance;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ApplicationLoader;
+import org.telegram.solo.AutoDeleteMediaTask;
+import org.telegram.solo.BackupAgent;
+import org.telegram.solo.BotWebViewVibrationEffect;
+import org.telegram.solo.BuildVars;
+import org.telegram.solo.ChannelBoostsController;
+import org.telegram.solo.ChatObject;
+import org.telegram.solo.ContactsController;
+import org.telegram.solo.ContactsLoadingObserver;
+import org.telegram.solo.DialogObject;
+import org.telegram.solo.FileLoader;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.FingerprintController;
+import org.telegram.solo.FlagSecureReason;
+import org.telegram.solo.GenericProvider;
+import org.telegram.solo.LiteMode;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.LocationController;
+import org.telegram.solo.MediaController;
+import org.telegram.solo.MediaDataController;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.MessagesStorage;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.NotificationsController;
+import org.telegram.solo.PushListenerController;
+import org.telegram.solo.R;
+import org.telegram.solo.SendMessagesHelper;
+import org.telegram.solo.SharedConfig;
+import org.telegram.solo.TopicsController;
+import org.telegram.solo.UserConfig;
+import org.telegram.solo.UserObject;
+import org.telegram.solo.Utilities;
+import org.telegram.solo.browser.Browser;
+import org.telegram.solo.voip.VideoCapturerDevice;
+import org.telegram.solo.voip.VoIPPendingCall;
+import org.telegram.solo.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -1880,7 +1880,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     if (error) {
                         Toast.makeText(this, "Unsupported content", Toast.LENGTH_SHORT).show();
                     }
-                } else if ("org.telegram.messenger.CREATE_STICKER_PACK".equals(intent.getAction())) {
+                } else if ("org.telegram.solo.CREATE_STICKER_PACK".equals(intent.getAction())) {
                     try {
                         importingStickers = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
                         importingStickersEmoji = intent.getStringArrayListExtra("STICKER_EMOJIS");
@@ -2717,9 +2717,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                                             NotificationCenter.getInstance(intentAccount[0]).postNotificationName(NotificationCenter.closeChats);
                                             push_user_id = userId;
                                             String mimeType = cursor.getString(cursor.getColumnIndex(ContactsContract.Data.MIMETYPE));
-                                            if (TextUtils.equals(mimeType, "vnd.android.cursor.item/vnd.org.telegram.messenger.android.call")) {
+                                            if (TextUtils.equals(mimeType, "vnd.android.cursor.item/vnd.org.telegram.solo.android.call")) {
                                                 audioCallUser = true;
-                                            } else if (TextUtils.equals(mimeType, "vnd.android.cursor.item/vnd.org.telegram.messenger.android.call.video")) {
+                                            } else if (TextUtils.equals(mimeType, "vnd.android.cursor.item/vnd.org.telegram.solo.android.call.video")) {
                                                 videoCallUser = true;
                                             }
                                         }
@@ -2730,7 +2730,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                             }
                         }
                     }
-                } else if (intent.getAction().equals("org.telegram.messenger.OPEN_ACCOUNT")) {
+                } else if (intent.getAction().equals("org.telegram.solo.OPEN_ACCOUNT")) {
                     open_settings = 1;
                 } else if (intent.getAction().equals("new_dialog")) {
                     open_new_dialog = 1;

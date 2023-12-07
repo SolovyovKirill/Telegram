@@ -39,15 +39,15 @@ import android.widget.LinearLayout;
 
 import androidx.core.graphics.ColorUtils;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SvgHelper;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.DocumentObject;
+import org.telegram.solo.Emoji;
+import org.telegram.solo.FileLoader;
+import org.telegram.solo.ImageLocation;
+import org.telegram.solo.LiteMode;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.R;
+import org.telegram.solo.SvgHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;

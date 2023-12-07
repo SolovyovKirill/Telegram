@@ -2,8 +2,8 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.LocaleController;
 
 public final class ViewHelper {
 

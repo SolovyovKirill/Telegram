@@ -25,10 +25,10 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.R;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 

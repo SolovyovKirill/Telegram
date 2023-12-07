@@ -5,12 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SharedConfig;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.BuildVars;
+import org.telegram.solo.DispatchQueue;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
 
 import java.util.ArrayList;

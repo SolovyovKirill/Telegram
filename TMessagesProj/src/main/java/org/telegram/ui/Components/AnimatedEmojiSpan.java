@@ -17,12 +17,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserConfig;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.Emoji;
+import org.telegram.solo.ImageReceiver;
+import org.telegram.solo.LiteMode;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;

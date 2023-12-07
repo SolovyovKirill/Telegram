@@ -8,7 +8,7 @@
 
 package org.telegram.ui;
 
-import static org.telegram.messenger.AndroidUtilities.dp;
+import static org.telegram.solo.AndroidUtilities.dp;
 
 import android.Manifest;
 import android.animation.ObjectAnimator;
@@ -22,8 +22,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
@@ -52,20 +50,18 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.time.SunDate;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ApplicationLoader;
+import org.telegram.solo.FileLoader;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.MediaDataController;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.R;
+import org.telegram.solo.SharedConfig;
+import org.telegram.solo.Utilities;
+import org.telegram.solo.time.SunDate;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
@@ -93,7 +89,6 @@ import org.telegram.ui.Cells.ThemePreviewMessagesCell;
 import org.telegram.ui.Cells.ThemeTypeCell;
 import org.telegram.ui.Cells.ThemesHorizontalListCell;
 import org.telegram.ui.Components.AlertsCreator;
-import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
@@ -102,7 +97,6 @@ import org.telegram.ui.Components.SeekBarView;
 import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.Components.SimpleThemeDescription;
 import org.telegram.ui.Components.SwipeGestureSettingsView;
-import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.ThemeEditorView;
 
 import java.io.File;

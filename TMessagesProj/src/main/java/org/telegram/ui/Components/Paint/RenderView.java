@@ -13,10 +13,10 @@ import android.view.MotionEvent;
 import android.view.TextureView;
 import android.view.View;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.FileLog;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.BuildVars;
+import org.telegram.solo.DispatchQueue;
+import org.telegram.solo.FileLog;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.Size;
 

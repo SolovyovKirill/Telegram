@@ -14,8 +14,8 @@ import android.graphics.ColorFilter;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.R;
 
 public class ShareLocationDrawable extends Drawable {
 

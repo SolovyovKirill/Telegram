@@ -16,23 +16,20 @@ import android.text.TextUtils;
 import android.text.style.DynamicDrawableSpan;
 import android.text.style.ImageSpan;
 import android.util.SparseArray;
-import android.util.SparseIntArray;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.exoplayer2.util.Log;
-
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ApplicationLoader;
+import org.telegram.solo.ContactsController;
+import org.telegram.solo.DialogObject;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.MessagesStorage;
+import org.telegram.solo.R;
+import org.telegram.solo.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;

@@ -22,7 +22,6 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -38,11 +37,11 @@ import android.widget.ScrollView;
 import androidx.annotation.Keep;
 import androidx.annotation.Nullable;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.AnimationNotificationsLocker;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.R;
+import org.telegram.solo.UserConfig;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.PopupSwipeBackLayout;
 

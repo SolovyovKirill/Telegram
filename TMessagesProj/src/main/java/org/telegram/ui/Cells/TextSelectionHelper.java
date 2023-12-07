@@ -1,7 +1,7 @@
 package org.telegram.ui.Cells;
 
 import static com.google.zxing.common.detector.MathUtils.distance;
-import static org.telegram.messenger.AndroidUtilities.dp;
+import static org.telegram.solo.AndroidUtilities.dp;
 import static org.telegram.ui.ActionBar.FloatingToolbar.STYLE_THEME;
 import static org.telegram.ui.ActionBar.Theme.key_chat_inTextSelectionHighlight;
 
@@ -20,8 +20,6 @@ import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.StaticLayout;
-import android.text.TextUtils;
-import android.util.Log;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
 import android.util.TypedValue;
@@ -44,16 +42,16 @@ import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LanguageDetector;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.Utilities;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ApplicationLoader;
+import org.telegram.solo.Emoji;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.LanguageDetector;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.R;
+import org.telegram.solo.SharedConfig;
+import org.telegram.solo.Utilities;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.FloatingActionMode;
 import org.telegram.ui.ActionBar.FloatingToolbar;

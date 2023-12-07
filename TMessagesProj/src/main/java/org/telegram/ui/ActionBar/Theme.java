@@ -8,8 +8,8 @@
 
 package org.telegram.ui.ActionBar;
 
-import static org.telegram.messenger.AndroidUtilities.dp;
-import static org.telegram.messenger.AndroidUtilities.dpf2;
+import static org.telegram.solo.AndroidUtilities.dp;
+import static org.telegram.solo.AndroidUtilities.dpf2;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -77,26 +77,26 @@ import androidx.core.math.MathUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.Bitmaps;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.time.SunDate;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ApplicationLoader;
+import org.telegram.solo.Bitmaps;
+import org.telegram.solo.BuildVars;
+import org.telegram.solo.FileLoader;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.ImageLocation;
+import org.telegram.solo.LiteMode;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.MediaController;
+import org.telegram.solo.MediaDataController;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.R;
+import org.telegram.solo.SharedConfig;
+import org.telegram.solo.SvgHelper;
+import org.telegram.solo.UserConfig;
+import org.telegram.solo.Utilities;
+import org.telegram.solo.time.SunDate;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;

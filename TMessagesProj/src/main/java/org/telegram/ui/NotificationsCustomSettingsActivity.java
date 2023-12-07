@@ -8,10 +8,10 @@
 
 package org.telegram.ui;
 
-import static org.telegram.messenger.NotificationsController.TYPE_CHANNEL;
-import static org.telegram.messenger.NotificationsController.TYPE_GROUP;
-import static org.telegram.messenger.NotificationsController.TYPE_PRIVATE;
-import static org.telegram.messenger.NotificationsController.TYPE_STORIES;
+import static org.telegram.solo.NotificationsController.TYPE_CHANNEL;
+import static org.telegram.solo.NotificationsController.TYPE_GROUP;
+import static org.telegram.solo.NotificationsController.TYPE_PRIVATE;
+import static org.telegram.solo.NotificationsController.TYPE_STORIES;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -41,20 +41,20 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ChatObject;
+import org.telegram.solo.ContactsController;
+import org.telegram.solo.DialogObject;
+import org.telegram.solo.FileLoader;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.MediaDataController;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.NotificationsController;
+import org.telegram.solo.R;
+import org.telegram.solo.UserObject;
+import org.telegram.solo.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;

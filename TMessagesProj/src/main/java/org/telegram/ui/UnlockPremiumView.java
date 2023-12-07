@@ -12,8 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.LayoutHelper;

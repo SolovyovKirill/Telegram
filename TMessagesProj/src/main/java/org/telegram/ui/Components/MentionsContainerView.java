@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
 
-import static org.telegram.messenger.AndroidUtilities.dp;
+import static org.telegram.solo.AndroidUtilities.dp;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -23,29 +23,26 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ChatObject;
+import org.telegram.solo.FileLoader;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.ImageReceiver;
+import org.telegram.solo.MediaDataController;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.R;
+import org.telegram.solo.SharedConfig;
+import org.telegram.solo.UserConfig;
+import org.telegram.solo.UserObject;
+import org.telegram.solo.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.MentionsAdapter;
 import org.telegram.ui.Adapters.PaddedListAdapter;
 import org.telegram.ui.Cells.ContextLinkCell;
 import org.telegram.ui.Cells.StickerCell;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.ContentPreviewViewer;
 import org.telegram.ui.PhotoViewer;
 

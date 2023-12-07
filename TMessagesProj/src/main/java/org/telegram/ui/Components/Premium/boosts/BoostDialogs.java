@@ -1,10 +1,10 @@
 package org.telegram.ui.Components.Premium.boosts;
 
-import static org.telegram.messenger.AndroidUtilities.dp;
-import static org.telegram.messenger.AndroidUtilities.replaceTags;
-import static org.telegram.messenger.LocaleController.formatPluralString;
-import static org.telegram.messenger.LocaleController.formatString;
-import static org.telegram.messenger.LocaleController.getString;
+import static org.telegram.solo.AndroidUtilities.dp;
+import static org.telegram.solo.AndroidUtilities.replaceTags;
+import static org.telegram.solo.LocaleController.formatPluralString;
+import static org.telegram.solo.LocaleController.formatString;
+import static org.telegram.solo.LocaleController.getString;
 import static org.telegram.ui.Components.Premium.boosts.SelectorBottomSheet.TYPE_CHANNEL;
 import static org.telegram.ui.Components.Premium.boosts.SelectorBottomSheet.TYPE_COUNTRY;
 import static org.telegram.ui.Components.Premium.boosts.SelectorBottomSheet.TYPE_USER;
@@ -27,16 +27,16 @@ import android.widget.Toast;
 
 import androidx.core.graphics.ColorUtils;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.browser.Browser;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.DialogObject;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.R;
+import org.telegram.solo.UserConfig;
+import org.telegram.solo.UserObject;
+import org.telegram.solo.Utilities;
+import org.telegram.solo.browser.Browser;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;

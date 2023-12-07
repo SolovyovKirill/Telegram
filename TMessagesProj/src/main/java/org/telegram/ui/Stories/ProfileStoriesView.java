@@ -1,9 +1,9 @@
 package org.telegram.ui.Stories;
 
-import static org.telegram.messenger.AndroidUtilities.dp;
-import static org.telegram.messenger.AndroidUtilities.dpf2;
-import static org.telegram.messenger.AndroidUtilities.lerp;
-import static org.telegram.messenger.Utilities.clamp;
+import static org.telegram.solo.AndroidUtilities.dp;
+import static org.telegram.solo.AndroidUtilities.dpf2;
+import static org.telegram.solo.AndroidUtilities.lerp;
+import static org.telegram.solo.Utilities.clamp;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -29,14 +29,14 @@ import androidx.core.graphics.ColorUtils;
 
 import com.google.zxing.common.detector.MathUtils;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ImageReceiver;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.SharedConfig;
+import org.telegram.solo.UserConfig;
+import org.telegram.solo.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;

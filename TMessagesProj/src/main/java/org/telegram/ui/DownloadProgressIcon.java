@@ -7,15 +7,13 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.view.View;
 
-import com.google.android.exoplayer2.util.Log;
-
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.DownloadController;
+import org.telegram.solo.FileLoader;
+import org.telegram.solo.ImageReceiver;
+import org.telegram.solo.MessagesStorage;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RLottieDrawable;
 

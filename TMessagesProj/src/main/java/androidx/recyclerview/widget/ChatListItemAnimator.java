@@ -14,11 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SharedConfig;
+import org.telegram.solo.BuildVars;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.ImageReceiver;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BotHelpCell;
 import org.telegram.ui.Cells.ChatMessageCell;

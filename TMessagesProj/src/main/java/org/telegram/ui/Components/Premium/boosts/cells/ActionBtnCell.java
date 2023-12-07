@@ -11,10 +11,9 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.R;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 

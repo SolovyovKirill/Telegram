@@ -1,9 +1,8 @@
 package org.telegram.ui.Stories.recorder;
 
-import static org.telegram.messenger.AndroidUtilities.dp;
-import static org.telegram.messenger.AndroidUtilities.dpf2;
+import static org.telegram.solo.AndroidUtilities.dp;
+import static org.telegram.solo.AndroidUtilities.dpf2;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -22,13 +21,13 @@ import android.widget.TextView;
 
 import androidx.core.graphics.ColorUtils;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.Emoji;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.R;
+import org.telegram.solo.UserConfig;
+import org.telegram.solo.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;

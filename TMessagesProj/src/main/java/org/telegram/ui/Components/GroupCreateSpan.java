@@ -18,27 +18,23 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Layout;
-import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
-import android.text.style.ReplacementSpan;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.graphics.ColorUtils;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ContactsController;
+import org.telegram.solo.Emoji;
+import org.telegram.solo.ImageLocation;
+import org.telegram.solo.ImageReceiver;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.R;
+import org.telegram.solo.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 

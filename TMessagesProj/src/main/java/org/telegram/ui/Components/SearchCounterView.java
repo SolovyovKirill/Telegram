@@ -16,8 +16,8 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 
 public class SearchCounterView extends View {

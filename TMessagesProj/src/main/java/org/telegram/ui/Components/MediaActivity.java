@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
-import static org.telegram.messenger.AndroidUtilities.dp;
-import static org.telegram.messenger.AndroidUtilities.lerp;
+import static org.telegram.solo.AndroidUtilities.dp;
+import static org.telegram.solo.AndroidUtilities.lerp;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -32,18 +32,18 @@ import android.widget.ImageView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.BotWebViewVibrationEffect;
+import org.telegram.solo.ContactsController;
+import org.telegram.solo.DialogObject;
+import org.telegram.solo.ImageLocation;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.MediaDataController;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.R;
+import org.telegram.solo.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;

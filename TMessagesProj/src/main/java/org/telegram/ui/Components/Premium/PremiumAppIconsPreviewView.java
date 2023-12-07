@@ -8,9 +8,9 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.AppIconsSelectorCell;
 import org.telegram.ui.Components.CubicBezierInterpolator;

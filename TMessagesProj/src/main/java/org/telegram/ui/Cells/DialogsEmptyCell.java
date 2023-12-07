@@ -24,11 +24,11 @@ import androidx.annotation.IntDef;
 import androidx.annotation.RawRes;
 import androidx.core.util.Consumer;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.R;
+import org.telegram.solo.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.Theme;

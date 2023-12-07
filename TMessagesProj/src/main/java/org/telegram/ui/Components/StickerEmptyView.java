@@ -1,12 +1,10 @@
 package org.telegram.ui.Components;
 
-import static org.telegram.messenger.AndroidUtilities.dp;
+import static org.telegram.solo.AndroidUtilities.dp;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
-import android.text.TextUtils;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -18,19 +16,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.graphics.ColorUtils;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.UserConfig;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.DocumentObject;
+import org.telegram.solo.ImageLocation;
+import org.telegram.solo.LiteMode;
+import org.telegram.solo.MediaDataController;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.R;
+import org.telegram.solo.SvgHelper;
+import org.telegram.solo.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.LaunchActivity;
 
 public class StickerEmptyView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
 

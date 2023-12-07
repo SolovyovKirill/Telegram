@@ -30,8 +30,8 @@ import android.widget.TextView;
 
 import androidx.viewpager.widget.ViewPager;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.FileLog;
 import org.telegram.ui.Components.AnimatedArrowDrawable;
 import org.telegram.ui.Components.AudioPlayerAlert;
 import org.telegram.ui.Components.AvatarDrawable;

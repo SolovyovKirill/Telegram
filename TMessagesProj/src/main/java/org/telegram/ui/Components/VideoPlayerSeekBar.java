@@ -29,11 +29,11 @@ import android.view.View;
 
 import androidx.core.graphics.ColorUtils;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.Emoji;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.Utilities;
 
 import java.util.ArrayList;
 import java.util.Collections;

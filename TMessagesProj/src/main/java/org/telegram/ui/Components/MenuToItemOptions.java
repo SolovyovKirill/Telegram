@@ -10,10 +10,10 @@ import android.view.SubMenu;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.UserConfig;
+import org.telegram.solo.Utilities;
 import org.telegram.ui.ActionBar.FloatingToolbar;
 
 public class MenuToItemOptions implements Menu {

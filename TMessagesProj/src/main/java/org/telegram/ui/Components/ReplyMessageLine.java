@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
-import static org.telegram.messenger.AndroidUtilities.dp;
-import static org.telegram.messenger.AndroidUtilities.dpf2;
+import static org.telegram.solo.AndroidUtilities.dp;
+import static org.telegram.solo.AndroidUtilities.dpf2;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,19 +9,17 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.UserConfig;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.DialogObject;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.SharedConfig;
+import org.telegram.solo.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;

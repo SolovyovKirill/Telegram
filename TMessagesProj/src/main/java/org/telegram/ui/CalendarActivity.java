@@ -32,18 +32,18 @@ import androidx.core.view.GestureDetectorCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.DownloadController;
+import org.telegram.solo.FileLoader;
+import org.telegram.solo.ImageLocation;
+import org.telegram.solo.ImageReceiver;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.MessagesStorage;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.R;
+import org.telegram.solo.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -68,7 +68,6 @@ import org.telegram.ui.Stories.StoryViewer;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.SortedSet;
 
 public class CalendarActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

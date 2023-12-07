@@ -15,10 +15,10 @@ import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.WebFile;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ImageLocation;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.WebFile;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;

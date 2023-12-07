@@ -23,12 +23,12 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserObject;
+import org.telegram.solo.AccountInstance;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ChatObject;
+import org.telegram.solo.ImageLocation;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.voip.GroupCallMiniTextureView;

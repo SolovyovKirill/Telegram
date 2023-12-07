@@ -14,9 +14,9 @@ import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.widget.FrameLayout;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.LocaleController;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ContactsController;
+import org.telegram.solo.LocaleController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;

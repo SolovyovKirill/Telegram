@@ -6,17 +6,15 @@ import android.graphics.fonts.Font;
 import android.graphics.fonts.SystemFonts;
 import android.os.Build;
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.Utilities;
 
 import java.io.File;
 import java.io.IOException;

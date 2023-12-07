@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ApplicationLoader;
 import org.telegram.ui.ActionBar.Theme;
 
 public class ColoredImageSpan extends ReplacementSpan {

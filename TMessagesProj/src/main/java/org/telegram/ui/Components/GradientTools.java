@@ -10,8 +10,8 @@ import android.graphics.Shader;
 
 import androidx.core.graphics.ColorUtils;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.Utilities;
 
 public class GradientTools {
 

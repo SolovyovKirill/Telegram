@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.SharedConfig;
 
 @SuppressLint("ViewConstructor")
 public class BlurredLinearLayout extends LinearLayout {

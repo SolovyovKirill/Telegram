@@ -16,7 +16,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.solo.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 
 public class CounterView extends View {

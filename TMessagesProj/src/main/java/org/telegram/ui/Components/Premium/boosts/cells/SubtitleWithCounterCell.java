@@ -1,6 +1,6 @@
 package org.telegram.ui.Components.Premium.boosts.cells;
 
-import static org.telegram.messenger.AndroidUtilities.dp;
+import static org.telegram.solo.AndroidUtilities.dp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,8 +8,8 @@ import android.view.Gravity;
 
 import androidx.annotation.NonNull;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;

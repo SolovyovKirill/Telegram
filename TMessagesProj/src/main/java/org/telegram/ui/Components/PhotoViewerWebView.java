@@ -2,9 +2,6 @@ package org.telegram.ui.Components;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -36,16 +33,16 @@ import androidx.annotation.RequiresApi;
 import com.google.android.exoplayer2.ExoPlayer;
 
 import org.json.JSONObject;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BringAppForegroundService;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.browser.Browser;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ApplicationLoader;
+import org.telegram.solo.BringAppForegroundService;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.R;
+import org.telegram.solo.UserConfig;
+import org.telegram.solo.Utilities;
+import org.telegram.solo.browser.Browser;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.PhotoViewer;
@@ -751,7 +748,7 @@ public class PhotoViewerWebView extends FrameLayout {
                 webView.loadDataWithBaseURL("https://messenger.telegram.org/", String.format(Locale.US, bos.toString("UTF-8"), currentYoutubeId, seekToTime), "text/html", "UTF-8", "https://youtube.com");
             } else {
                 HashMap<String, String> args = new HashMap<>();
-                args.put("Referer", "messenger.telegram.org");
+                args.put("Referer", "solo.telegram.org");
                 webView.loadUrl(webPage.embed_url, args);
             }
         } catch (Exception e) {

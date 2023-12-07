@@ -1,6 +1,6 @@
 package org.telegram.ui.Components.Premium;
 
-import static org.telegram.messenger.AndroidUtilities.dp;
+import static org.telegram.solo.AndroidUtilities.dp;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -29,11 +29,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.math.MathUtils;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.R;
+import org.telegram.solo.UserConfig;
+import org.telegram.solo.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ColoredImageSpan;

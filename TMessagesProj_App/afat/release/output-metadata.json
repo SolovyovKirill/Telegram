@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "org.telegram.solo",
+  "variantName": "afatRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 40879,
+      "versionName": "10.2.9",
+      "outputFile": "app.apk"
+    }
+  ],
+  "elementType": "File"
+}

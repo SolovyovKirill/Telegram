@@ -6,9 +6,9 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 
-import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
+import org.telegram.solo.AccountInstance;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ChatObject;
 import org.telegram.ui.GroupCallActivity;
 import org.telegram.ui.GroupCallTabletGridAdapter;
 

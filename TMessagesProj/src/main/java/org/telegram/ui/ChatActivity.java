@@ -67,7 +67,6 @@ import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.URLSpan;
-import android.util.Log;
 import android.util.Pair;
 import android.util.Property;
 import android.util.SparseArray;
@@ -118,53 +117,53 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.zxing.common.detector.MathUtils;
 
 import org.telegram.PhoneFormat.PhoneFormat;
-import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.ChatMessageSharedResources;
-import org.telegram.messenger.ChatMessagesMetadataController;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.ChatThemeController;
-import org.telegram.messenger.CodeHighlighting;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.EmojiData;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.FlagSecureReason;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LanguageDetector;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagePreviewParams;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SecretChatHelper;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.TranslateController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.messenger.browser.Browser;
-import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.messenger.utils.PhotoUtilities;
-import org.telegram.messenger.voip.VoIPService;
+import org.telegram.solo.AccountInstance;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ApplicationLoader;
+import org.telegram.solo.BotWebViewVibrationEffect;
+import org.telegram.solo.ChatMessageSharedResources;
+import org.telegram.solo.ChatMessagesMetadataController;
+import org.telegram.solo.ChatObject;
+import org.telegram.solo.BuildVars;
+import org.telegram.solo.ChatThemeController;
+import org.telegram.solo.CodeHighlighting;
+import org.telegram.solo.ContactsController;
+import org.telegram.solo.DialogObject;
+import org.telegram.solo.DocumentObject;
+import org.telegram.solo.DownloadController;
+import org.telegram.solo.Emoji;
+import org.telegram.solo.EmojiData;
+import org.telegram.solo.FileLoader;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.FlagSecureReason;
+import org.telegram.solo.ImageLoader;
+import org.telegram.solo.ImageLocation;
+import org.telegram.solo.ImageReceiver;
+import org.telegram.solo.LanguageDetector;
+import org.telegram.solo.LiteMode;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.MediaController;
+import org.telegram.solo.MediaDataController;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.MessagePreviewParams;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.MessagesStorage;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.NotificationsController;
+import org.telegram.solo.R;
+import org.telegram.solo.SecretChatHelper;
+import org.telegram.solo.SendMessagesHelper;
+import org.telegram.solo.SharedConfig;
+import org.telegram.solo.SvgHelper;
+import org.telegram.solo.TranslateController;
+import org.telegram.solo.UserConfig;
+import org.telegram.solo.UserObject;
+import org.telegram.solo.Utilities;
+import org.telegram.solo.VideoEditedInfo;
+import org.telegram.solo.browser.Browser;
+import org.telegram.solo.support.LongSparseIntArray;
+import org.telegram.solo.utils.PhotoUtilities;
+import org.telegram.solo.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -257,6 +256,7 @@ import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.MentionsContainerView;
 import org.telegram.ui.Components.MessageBackgroundDrawable;
 import org.telegram.ui.Components.MessageContainsEmojiButton;
+import org.telegram.ui.Components.MessageDeletionAnimationHelper;
 import org.telegram.ui.Components.MessagePreviewView;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.NumberTextView;
@@ -340,7 +340,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private final static boolean PULL_DOWN_BACK_FRAGMENT = false;
     private final static boolean DISABLE_PROGRESS_VIEW = true;
     private final static int SKELETON_DISAPPEAR_MS = 200;
-
+    private MessageDeletionAnimationHelper messageDeletionAnimationHelper;
     private static int SKELETON_LIGHT_OVERLAY_ALPHA = 22;
     private static float SKELETON_SATURATION = 1.4f;
 
@@ -5724,7 +5724,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         });
 
         contentView.addView(chatListView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT));
-
+        if (MessageDeletionAnimationHelper.isSupported()) {
+            contentView.addView(messageDeletionAnimationHelper = new MessageDeletionAnimationHelper(context), LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT));
+        }
         selectionReactionsOverlay = new ChatSelectionReactionMenuOverlay(this, context);
         contentView.addView(selectionReactionsOverlay, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT));
 
@@ -6898,7 +6900,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             @Override
             protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
                 int allWidth = MeasureSpec.getSize(widthMeasureSpec);
-                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) bottomOverlayChatText.getLayoutParams();
+                LayoutParams layoutParams = (LayoutParams) bottomOverlayChatText.getLayoutParams();
                 layoutParams.width = allWidth;
                 super.onMeasure(widthMeasureSpec, heightMeasureSpec);
             }
@@ -7428,7 +7430,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
                 ignoreLayout = true;
                 if (reportSpamButton != null && reportSpamButton.getVisibility() == VISIBLE) {
-                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) reportSpamButton.getLayoutParams();
+                    LayoutParams layoutParams = (LayoutParams) reportSpamButton.getLayoutParams();
                     layoutParams.width = width;
                     if (addToContactsButton != null && addToContactsButton.getVisibility() == VISIBLE) {
                         reportSpamButton.setPadding(AndroidUtilities.dp(4), 0, AndroidUtilities.dp(4), 0);
@@ -7440,7 +7442,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     }
                 }
                 if (addToContactsButton != null && addToContactsButton.getVisibility() == VISIBLE) {
-                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) addToContactsButton.getLayoutParams();
+                    LayoutParams layoutParams = (LayoutParams) addToContactsButton.getLayoutParams();
                     layoutParams.width = width;
                     if (reportSpamButton != null && reportSpamButton.getVisibility() == VISIBLE) {
                         addToContactsButton.setPadding(AndroidUtilities.dp(11), 0, AndroidUtilities.dp(4), 0);
@@ -8016,7 +8018,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         @Override
         protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
             super.onMeasure(
-                View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(widthMeasureSpec), (int) (AndroidUtilities.displaySize.x * 0.45f)), View.MeasureSpec.AT_MOST),
+                MeasureSpec.makeMeasureSpec(Math.min(MeasureSpec.getSize(widthMeasureSpec), (int) (AndroidUtilities.displaySize.x * 0.45f)), MeasureSpec.AT_MOST),
                 heightMeasureSpec
             );
         }
@@ -14255,8 +14257,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         @Override
         protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
             int allHeight;
-            int widthSize = View.MeasureSpec.getSize(widthMeasureSpec);
-            int heightSize = allHeight = View.MeasureSpec.getSize(heightMeasureSpec);
+            int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+            int heightSize = allHeight = MeasureSpec.getSize(heightMeasureSpec);
 
             if (lastWidth != widthSize) {
                 globalIgnoreLayout = true;
@@ -14274,11 +14276,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
                 if (showSearchAsIcon || showAudioCallAsIcon) {
                     if (avatarContainer != null && avatarContainer.getLayoutParams() != null) {
-                        ((ViewGroup.MarginLayoutParams) avatarContainer.getLayoutParams()).rightMargin = AndroidUtilities.dp(96);
+                        ((MarginLayoutParams) avatarContainer.getLayoutParams()).rightMargin = AndroidUtilities.dp(96);
                     }
                 } else {
                     if (avatarContainer != null && avatarContainer.getLayoutParams() != null) {
-                        ((ViewGroup.MarginLayoutParams) avatarContainer.getLayoutParams()).rightMargin = AndroidUtilities.dp(40);
+                        ((MarginLayoutParams) avatarContainer.getLayoutParams()).rightMargin = AndroidUtilities.dp(40);
                     }
                 }
                 if (showSearchAsIcon) {
@@ -14390,19 +14392,19 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     continue;
                 }
                 if (child == backgroundView) {
-                    int contentWidthSpec = View.MeasureSpec.makeMeasureSpec(widthSize, View.MeasureSpec.EXACTLY);
-                    int contentHeightSpec = View.MeasureSpec.makeMeasureSpec(allHeight, View.MeasureSpec.EXACTLY);
+                    int contentWidthSpec = MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY);
+                    int contentHeightSpec = MeasureSpec.makeMeasureSpec(allHeight, MeasureSpec.EXACTLY);
                     child.measure(contentWidthSpec, contentHeightSpec);
                 } else if (child == blurredView) {
                     int h = allHeight;
                     if (keyboardSize > AndroidUtilities.dp(20) && getLayoutParams().height < 0) {
                         h += keyboardSize;
                     }
-                    int contentWidthSpec = View.MeasureSpec.makeMeasureSpec(widthSize, View.MeasureSpec.EXACTLY);
-                    int contentHeightSpec = View.MeasureSpec.makeMeasureSpec(h, View.MeasureSpec.EXACTLY);
+                    int contentWidthSpec = MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY);
+                    int contentHeightSpec = MeasureSpec.makeMeasureSpec(h, MeasureSpec.EXACTLY);
                     child.measure(contentWidthSpec, contentHeightSpec);
                 } else if (child == chatListView) {
-                    int contentWidthSpec = View.MeasureSpec.makeMeasureSpec(widthSize, View.MeasureSpec.EXACTLY);
+                    int contentWidthSpec = MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY);
                     int h = heightSize - listViewTopHeight - (inPreviewMode && Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0) + blurredViewTopOffset + blurredViewBottomOffset;
                     if (keyboardSize > AndroidUtilities.dp(20) && getLayoutParams().height < 0) {
                         h += keyboardSize;
@@ -14410,23 +14412,23 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     if (bottomOverlay != null && bottomOverlay.getVisibility() == View.VISIBLE && bottomOverlayStartButton != null && bottomOverlayStartButton.getVisibility() != View.GONE) {
                         h -= AndroidUtilities.dp(16);
                     }
-                    int contentHeightSpec = View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10), h), View.MeasureSpec.EXACTLY);
+                    int contentHeightSpec = MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10), h), MeasureSpec.EXACTLY);
                     child.measure(contentWidthSpec, contentHeightSpec);
                 } else if (child == progressView) {
-                    int contentWidthSpec = View.MeasureSpec.makeMeasureSpec(widthSize, View.MeasureSpec.EXACTLY);
-                    int contentHeightSpec = View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10), heightSize - inputFieldHeight - (inPreviewMode && Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0) + AndroidUtilities.dp(2 + (chatActivityEnterView.isTopViewVisible() ? 48 : 0))), View.MeasureSpec.EXACTLY);
+                    int contentWidthSpec = MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY);
+                    int contentHeightSpec = MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10), heightSize - inputFieldHeight - (inPreviewMode && Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0) + AndroidUtilities.dp(2 + (chatActivityEnterView.isTopViewVisible() ? 48 : 0))), MeasureSpec.EXACTLY);
                     child.measure(contentWidthSpec, contentHeightSpec);
                 } else if (child == instantCameraView || child == overlayView) {
-                    int contentWidthSpec = View.MeasureSpec.makeMeasureSpec(widthSize, View.MeasureSpec.EXACTLY);
-                    int contentHeightSpec = View.MeasureSpec.makeMeasureSpec(allHeight - inputFieldHeight - chatEmojiViewPadding + AndroidUtilities.dp(3), View.MeasureSpec.EXACTLY);
+                    int contentWidthSpec = MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY);
+                    int contentHeightSpec = MeasureSpec.makeMeasureSpec(allHeight - inputFieldHeight - chatEmojiViewPadding + AndroidUtilities.dp(3), MeasureSpec.EXACTLY);
                     child.measure(contentWidthSpec, contentHeightSpec);
                 } else if (child == emptyViewContainer) {
-                    int contentWidthSpec = View.MeasureSpec.makeMeasureSpec(widthSize, View.MeasureSpec.EXACTLY);
-                    int contentHeightSpec = View.MeasureSpec.makeMeasureSpec(heightSize, View.MeasureSpec.EXACTLY);
+                    int contentWidthSpec = MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY);
+                    int contentHeightSpec = MeasureSpec.makeMeasureSpec(heightSize, MeasureSpec.EXACTLY);
                     child.measure(contentWidthSpec, contentHeightSpec);
                 } else if (child == messagesSearchListView) {
-                    int contentWidthSpec = View.MeasureSpec.makeMeasureSpec(widthSize, View.MeasureSpec.EXACTLY);
-                    int contentHeightSpec = View.MeasureSpec.makeMeasureSpec(allHeight - actionBarHeight - AndroidUtilities.dp(48), View.MeasureSpec.EXACTLY);
+                    int contentWidthSpec = MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY);
+                    int contentHeightSpec = MeasureSpec.makeMeasureSpec(allHeight - actionBarHeight - AndroidUtilities.dp(48), MeasureSpec.EXACTLY);
                     child.measure(contentWidthSpec, contentHeightSpec);
                 } else if (chatActivityEnterView.isPopupView(child)) {
                     int height = chatActivityEnterView.getPopupViewHeight(child);
@@ -14435,20 +14437,20 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         if (height < 0) {
                             height = Math.max(Math.min(maxHeight, AndroidUtilities.dp(350)), maxHeight / 2);
                         }
-                        child.measure(View.MeasureSpec.makeMeasureSpec(widthSize, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY));
+                        child.measure(MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
                     } else if (AndroidUtilities.isInMultiwindow) {
                         int maxHeight = (heightSize - inputFieldHeight + actionBarHeight - AndroidUtilities.statusBarHeight + getPaddingTop());
                         if (height < 0) {
                             height = Math.max(Math.min(maxHeight, AndroidUtilities.dp(350)), maxHeight / 2);
                         }
-                        child.measure(View.MeasureSpec.makeMeasureSpec(widthSize, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY));
+                        child.measure(MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
                     } else {
-                        child.measure(View.MeasureSpec.makeMeasureSpec(widthSize, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(child.getLayoutParams().height, View.MeasureSpec.EXACTLY));
+                        child.measure(MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(child.getLayoutParams().height, MeasureSpec.EXACTLY));
                     }
                 } else if (child == mentionContainer) {
-                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) mentionContainer.getLayoutParams();
+                    LayoutParams layoutParams = (LayoutParams) mentionContainer.getLayoutParams();
                     if (mentionContainer.getAdapter().isBannedInline()) {
-                        child.measure(View.MeasureSpec.makeMeasureSpec(widthSize, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(heightSize, View.MeasureSpec.AT_MOST));
+                        child.measure(MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(heightSize, MeasureSpec.AT_MOST));
                     } else {
                         int height;
                         mentionContainer.setIgnoreLayout(true);
@@ -14482,11 +14484,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         layoutParams.topMargin = 0;
 
                         mentionContainer.setIgnoreLayout(false);
-                        child.measure(View.MeasureSpec.makeMeasureSpec(widthSize, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(layoutParams.height, View.MeasureSpec.EXACTLY));
+                        child.measure(MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(layoutParams.height, MeasureSpec.EXACTLY));
                     }
                     mentionContainer.setTranslationY(chatActivityEnterView.getAnimatedTop());
                 } else if (child == textSelectionHelper.getOverlayView(getContext())) {
-                    int contentWidthSpec = View.MeasureSpec.makeMeasureSpec(widthSize, View.MeasureSpec.EXACTLY);
+                    int contentWidthSpec = MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY);
                     int h = heightSize + blurredViewTopOffset;
                     if (keyboardSize > AndroidUtilities.dp(20) && getLayoutParams().height < 0) {
                         h += keyboardSize;
@@ -14494,14 +14496,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     } else {
                         textSelectionHelper.setKeyboardSize(0);
                     }
-                    child.measure(contentWidthSpec, View.MeasureSpec.makeMeasureSpec(h, View.MeasureSpec.EXACTLY));
+                    child.measure(contentWidthSpec, MeasureSpec.makeMeasureSpec(h, MeasureSpec.EXACTLY));
                 } else if (child instanceof MessagePreviewView) {
-                    int contentWidthSpec = View.MeasureSpec.makeMeasureSpec(widthSize, View.MeasureSpec.EXACTLY);
+                    int contentWidthSpec = MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY);
                     int h = allHeight - AndroidUtilities.statusBarHeight;
                     if (keyboardSize > AndroidUtilities.dp(20) && getLayoutParams().height < 0) {
                         h += keyboardSize;
                     }
-                    int contentHeightSpec = View.MeasureSpec.makeMeasureSpec(h, View.MeasureSpec.EXACTLY);
+                    int contentHeightSpec = MeasureSpec.makeMeasureSpec(h, MeasureSpec.EXACTLY);
                     child.measure(contentWidthSpec, contentHeightSpec);
                 } else {
                     measureChildWithMargins(child, widthMeasureSpec, 0, heightMeasureSpec, 0);
@@ -14512,7 +14514,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 invalidateChatListViewTopPadding();
                 invalidateMessagesVisiblePart();
                 fixPaddingsInLayout = false;
-                chatListView.measure(View.MeasureSpec.makeMeasureSpec(chatListView.getMeasuredWidth(), View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(chatListView.getMeasuredHeight(), View.MeasureSpec.EXACTLY));
+                chatListView.measure(MeasureSpec.makeMeasureSpec(chatListView.getMeasuredWidth(), MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(chatListView.getMeasuredHeight(), MeasureSpec.EXACTLY));
                 globalIgnoreLayout = false;
             }
             if (scrollToPositionOnRecreate != -1) {
@@ -14551,7 +14553,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 if (child == null || child.getVisibility() == GONE) {
                     continue;
                 }
-                final FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) child.getLayoutParams();
+                final LayoutParams lp = (LayoutParams) child.getLayoutParams();
 
                 final int width = child.getMeasuredWidth();
                 final int height = child.getMeasuredHeight();
@@ -20702,6 +20704,17 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
+
+        final List<MessageObject> messageObjects = new ArrayList<>(markAsDeletedMessages.size());
+        for (int i = 0; i < size; i++) {
+            Integer mid = markAsDeletedMessages.get(i);
+            MessageObject obj = messagesDict[loadIndex].get(mid);
+            if (obj != null) {
+                messageObjects.add(obj);
+            }
+        }
+        chatAdapter.animateDeletionForMessageObjects(messageObjects);
+
         int commentsDeleted = 0;
         for (int a = 0; a < size; a++) {
             Integer mid = markAsDeletedMessages.get(a);
@@ -23693,6 +23706,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             scrimPopupWindow.setPauseNotifications(false);
             closeMenu();
         }
+        if (messageDeletionAnimationHelper != null) {
+            messageDeletionAnimationHelper.stopAndClear();
+        }
         int replyId = threadMessageId;
         getMessagesController().markDialogAsReadNow(dialog_id, replyId);
         MediaController.getInstance().stopRaiseToEarSensors(this, true, true);
@@ -24139,7 +24155,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void onConfigurationChanged(android.content.res.Configuration newConfig) {
+    public void onConfigurationChanged(Configuration newConfig) {
         fixLayout();
         if (visibleDialog instanceof DatePickerDialog) {
             visibleDialog.dismiss();
@@ -27757,7 +27773,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return replyingMessageObject;
     }
 
-    public ChatActivity.ReplyQuote getReplyQuote() {
+    public ReplyQuote getReplyQuote() {
         return replyingQuote;
     }
 
@@ -29826,7 +29842,23 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 chatLayoutManager.scrollToPositionWithOffset(lastVisibleItem, top);
             }
         }
-
+        public void animateDeletionForMessageObjects(List<MessageObject> messageObjects) {
+            int count = chatListView.getChildCount();
+            List<ChatMessageCell> cells = new ArrayList<>(messageObjects.size());
+            for (MessageObject messageObject : messageObjects) {
+                for (int i = 0; i < count; i++) {
+                    View child = chatListView.getChildAt(i);
+                    if (child instanceof ChatMessageCell) {
+                        ChatMessageCell cell = (ChatMessageCell) child;
+                        if (cell.getMessageObject() == messageObject) {
+                            cells.add(cell);
+                            break;
+                        }
+                    }
+                }
+            }
+            messageDeletionAnimationHelper.launchAnimation(cells);
+        }
         public void invalidateRowWithMessageObject(MessageObject messageObject) {
             int count = chatListView.getChildCount();
             for (int a = 0; a < count; a++) {

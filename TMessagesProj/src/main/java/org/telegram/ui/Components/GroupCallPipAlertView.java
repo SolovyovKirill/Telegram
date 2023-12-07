@@ -21,14 +21,14 @@ import android.widget.TextView;
 
 import androidx.core.graphics.ColorUtils;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.voip.VoIPService;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ChatObject;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.ImageLocation;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.R;
+import org.telegram.solo.voip.VoIPService;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.voip.VoIPButtonsLayout;
 import org.telegram.ui.Components.voip.VoIPToggleButton;

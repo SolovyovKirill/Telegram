@@ -14,9 +14,9 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserConfig;
+import org.telegram.solo.MediaDataController;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.UserConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Cells.LoadingCell;

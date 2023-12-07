@@ -48,16 +48,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BringAppForegroundService;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.browser.Browser;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ApplicationLoader;
+import org.telegram.solo.BringAppForegroundService;
+import org.telegram.solo.FileLog;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.R;
+import org.telegram.solo.Utilities;
+import org.telegram.solo.browser.Browser;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
@@ -427,7 +427,7 @@ public class EmbedBottomSheet extends BottomSheet {
                 }
                 videoView.loadVideo(null, null, null, null, false);
                 HashMap<String, String> args = new HashMap<>();
-                args.put("Referer", "messenger.telegram.org");
+                args.put("Referer", "solo.telegram.org");
                 try {
                     webView.loadUrl(embedUrl, args);
                 } catch (Exception e) {
@@ -889,7 +889,7 @@ public class EmbedBottomSheet extends BottomSheet {
                     }
                     videoView.loadVideo(null, null, null, null, false);
                     HashMap<String, String> args = new HashMap<>();
-                    args.put("Referer", "messenger.telegram.org");
+                    args.put("Referer", "solo.telegram.org");
                     try {
                         String currentYoutubeId = videoView.getYoutubeId();
                         if (currentYoutubeId != null) {

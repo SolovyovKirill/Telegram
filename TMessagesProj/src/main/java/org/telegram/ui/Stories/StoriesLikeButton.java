@@ -4,19 +4,17 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.UserConfig;
+import org.telegram.solo.DocumentObject;
+import org.telegram.solo.ImageLocation;
+import org.telegram.solo.ImageReceiver;
+import org.telegram.solo.MediaDataController;
+import org.telegram.solo.SvgHelper;
+import org.telegram.solo.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
-
-import java.util.Objects;
 
 public class StoriesLikeButton extends View {
 

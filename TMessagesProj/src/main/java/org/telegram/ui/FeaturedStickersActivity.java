@@ -14,10 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
+import org.telegram.solo.MediaDataController;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.NotificationCenter;
+import org.telegram.solo.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;

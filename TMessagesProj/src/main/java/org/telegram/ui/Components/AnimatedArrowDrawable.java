@@ -9,7 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import androidx.annotation.Keep;
 
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.solo.AndroidUtilities;
 
 public class AnimatedArrowDrawable extends Drawable {
 

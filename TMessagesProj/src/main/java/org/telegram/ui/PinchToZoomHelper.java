@@ -30,15 +30,15 @@ import androidx.core.graphics.ColorUtils;
 
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.WebFile;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.FileLoader;
+import org.telegram.solo.ImageLocation;
+import org.telegram.solo.ImageReceiver;
+import org.telegram.solo.MediaController;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.R;
+import org.telegram.solo.Utilities;
+import org.telegram.solo.WebFile;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.BackupImageView;

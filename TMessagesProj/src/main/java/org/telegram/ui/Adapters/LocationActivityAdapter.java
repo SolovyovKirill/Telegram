@@ -17,12 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
+import org.telegram.solo.LocaleController;
+import org.telegram.solo.LocationController;
+import org.telegram.solo.MessageObject;
+import org.telegram.solo.R;
+import org.telegram.solo.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.HeaderCell;
@@ -35,7 +34,6 @@ import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.SharingLiveLocationCell;
 import org.telegram.ui.Components.ChatAttachAlertLocationLayout;
 import org.telegram.ui.Components.CombinedDrawable;
-import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LocationActivity;
 

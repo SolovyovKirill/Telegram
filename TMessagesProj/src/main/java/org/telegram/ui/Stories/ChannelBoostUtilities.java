@@ -2,8 +2,8 @@ package org.telegram.ui.Stories;
 
 import android.text.TextUtils;
 
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
+import org.telegram.solo.ChatObject;
+import org.telegram.solo.MessagesController;
 import org.telegram.tgnet.TLRPC;
 
 public class ChannelBoostUtilities {

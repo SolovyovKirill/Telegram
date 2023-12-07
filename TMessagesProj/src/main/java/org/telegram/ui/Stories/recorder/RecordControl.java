@@ -1,11 +1,10 @@
 package org.telegram.ui.Stories.recorder;
 
 import static android.graphics.Color.BLACK;
-import static org.telegram.messenger.AndroidUtilities.dp;
-import static org.telegram.messenger.AndroidUtilities.dpf2;
-import static org.telegram.messenger.AndroidUtilities.lerp;
+import static org.telegram.solo.AndroidUtilities.dp;
+import static org.telegram.solo.AndroidUtilities.dpf2;
+import static org.telegram.solo.AndroidUtilities.lerp;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
@@ -15,28 +14,23 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RadialGradient;
 import android.graphics.Shader;
-import android.graphics.SurfaceTexture;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.MotionEvent;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.widget.FrameLayout;
 
-import androidx.annotation.NonNull;
 import androidx.core.graphics.ColorUtils;
 
 import com.google.zxing.common.detector.MathUtils;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
+import org.telegram.solo.AndroidUtilities;
+import org.telegram.solo.ImageLocation;
+import org.telegram.solo.ImageReceiver;
+import org.telegram.solo.MediaController;
+import org.telegram.solo.MessagesController;
+import org.telegram.solo.R;
+import org.telegram.solo.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ButtonBounce;
