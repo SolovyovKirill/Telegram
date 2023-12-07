@@ -236,7 +236,7 @@ public class SessionCell extends FrameLayout {
             nameTextView.setText(session.domain);
             String name;
             if (user != null) {
-                avatarDrawable.setInfo(currentAccount, user);
+                avatarDrawable.setInfo(user);
                 name = UserObject.getFirstName(user);
                 imageView.setForUserOrChat(user, avatarDrawable);
             } else {

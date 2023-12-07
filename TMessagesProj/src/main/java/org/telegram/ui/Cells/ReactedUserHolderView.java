@@ -41,6 +41,7 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MessageSeenCheckDrawable;
+import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.StatusBadgeComponent;
@@ -167,7 +168,7 @@ public class ReactedUserHolderView extends FrameLayout {
         int colorFilter = Theme.getColor(style == STYLE_STORY ? Theme.key_windowBackgroundWhiteBlackText : Theme.key_chats_verifiedBackground, resourcesProvider);
         statusBadgeComponent.updateDrawable(user, chat, colorFilter, false);
 
-        avatarDrawable.setInfo(currentAccount, u);
+        avatarDrawable.setInfo(u);
         if (user != null) {
             dialogId = user.id;
             titleView.setText(UserObject.getUserName(user));

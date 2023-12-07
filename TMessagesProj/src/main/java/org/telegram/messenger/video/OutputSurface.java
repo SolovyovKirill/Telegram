@@ -148,8 +148,8 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         mSurfaceTexture.updateTexImage();
     }
 
-    public void drawImage(long time) {
-        mTextureRender.drawFrame(mSurfaceTexture, time);
+    public void drawImage() {
+        mTextureRender.drawFrame(mSurfaceTexture);
     }
 
     @Override

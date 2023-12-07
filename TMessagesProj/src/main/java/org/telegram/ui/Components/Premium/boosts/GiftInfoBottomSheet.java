@@ -107,7 +107,7 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         this.giftCode = giftCode;
         this.slug = slug;
         setApplyTopPadding(false);
-        setApplyBottomPadding(false);
+        setApplyBottomPadding(true);
         fixNavigationBar();
         updateTitle();
         adapter.init(fragment, giftCode, slug);

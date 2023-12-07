@@ -138,9 +138,6 @@ public class ChatBackgroundDrawable extends Drawable {
 
     public static Drawable createThumb(TLRPC.WallPaper wallPaper) {
         Drawable thumb = null;
-        if (wallPaper.thumbDrawable != null) {
-            return wallPaper.thumbDrawable;
-        }
         if (wallPaper.stripedThumb != null) {
             return new BitmapDrawable(wallPaper.stripedThumb);
         }
@@ -174,7 +171,7 @@ public class ChatBackgroundDrawable extends Drawable {
                 }
             }
         }
-        return wallPaper.thumbDrawable = thumb;
+        return thumb;
     }
 
     private static Drawable bitmapDrawableOf(Drawable drawable) {
@@ -206,13 +203,6 @@ public class ChatBackgroundDrawable extends Drawable {
                 canvas.drawColor(ColorUtils.setAlphaComponent(Color.BLACK, (int) (dimAmount * 255)));
             }
         }
-    }
-
-    public float getDimAmount() {
-        if (motionBackgroundDrawable == null) {
-            return dimAmount;
-        }
-        return 0;
     }
 
     @Override
@@ -265,18 +255,16 @@ public class ChatBackgroundDrawable extends Drawable {
         }
     }
 
-    public Drawable getDrawable(boolean prioritizeThumb) {
+    public Drawable getDrawable() {
         if (motionBackgroundDrawable != null) {
             return motionBackgroundDrawable;
         }
-        if (prioritizeThumb && imageReceiver.getStaticThumb() != null) {
+        if (imageReceiver.getStaticThumb() != null) {
             return imageReceiver.getStaticThumb();
         } else if (imageReceiver.getThumb() != null) {
             return imageReceiver.getThumb();
-        } else if (imageReceiver.getDrawable() != null) {
-            return imageReceiver.getDrawable();
         } else {
-            return imageReceiver.getStaticThumb();
+            return imageReceiver.getDrawable();
         }
     }
 

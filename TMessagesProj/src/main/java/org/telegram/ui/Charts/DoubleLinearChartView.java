@@ -14,11 +14,7 @@ import org.telegram.ui.Charts.view_data.LineViewData;
 public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, LineViewData> {
 
     public DoubleLinearChartView(Context context) {
-        this(context, null);
-    }
-
-    public DoubleLinearChartView(Context context, Theme.ResourcesProvider resourcesProvider) {
-        super(context, resourcesProvider);
+        super(context);
     }
 
     @Override
@@ -244,7 +240,7 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
             int y = (int) ((getMeasuredHeight() - chartBottom) - chartHeight * ((a.values[i] - currentMinHeight) / (currentMaxHeight - currentMinHeight)));
             if (a.valuesStr != null && lines.size() > 0) {
                 if (a.valuesStr2 == null || lines.size() < 2) {
-                    signaturePaint.setColor(Theme.getColor(Theme.key_statisticChartSignature, resourcesProvider));
+                    signaturePaint.setColor(Theme.getColor(Theme.key_statisticChartSignature));
                     signaturePaint.setAlpha((int) (a.alpha * signaturePaintAlpha * transitionAlpha * additionalOutAlpha));
                 } else {
                     signaturePaint.setColor(lines.get(leftIndex).lineColor);
@@ -263,7 +259,7 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
 
     @Override
     public LineViewData createLineViewData(ChartData.Line line) {
-        return new LineViewData(line, resourcesProvider);
+        return new LineViewData(line);
     }
 
     public int findMaxValue(int startXIndex, int endXIndex) {

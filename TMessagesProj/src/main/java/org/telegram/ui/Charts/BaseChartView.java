@@ -62,7 +62,6 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
     private final static int BOTTOM_SIGNATURE_OFFSET = AndroidUtilities.dp(10);
 
     private final static int DP_12 = AndroidUtilities.dp(12);
-    private final static int DP_8 = AndroidUtilities.dp(8);
     private final static int DP_6 = AndroidUtilities.dp(6);
     private final static int DP_5 = AndroidUtilities.dp(5);
     private final static int DP_2 = AndroidUtilities.dp(2);
@@ -224,15 +223,9 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
     private float startFromMaxH;
     private float startFromMinH;
     private float minMaxUpdateStep;
-    protected Theme.ResourcesProvider resourcesProvider;
 
     public BaseChartView(Context context) {
-        this(context, null);
-    }
-
-    public BaseChartView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        this.resourcesProvider = resourcesProvider;
         init();
         touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
     }
@@ -266,23 +259,23 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
     }
 
     protected LegendSignatureView createLegendView() {
-        return new LegendSignatureView(getContext(), resourcesProvider);
+        return new LegendSignatureView(getContext());
     }
 
     public void updateColors() {
         if (useAlphaSignature) {
-            signaturePaint.setColor(Theme.getColor(Theme.key_statisticChartSignatureAlpha, resourcesProvider));
+            signaturePaint.setColor(Theme.getColor(Theme.key_statisticChartSignatureAlpha));
         } else {
-            signaturePaint.setColor(Theme.getColor(Theme.key_statisticChartSignature, resourcesProvider));
+            signaturePaint.setColor(Theme.getColor(Theme.key_statisticChartSignature));
         }
 
-        bottomSignaturePaint.setColor(Theme.getColor(Theme.key_statisticChartSignature, resourcesProvider));
-        linePaint.setColor(Theme.getColor(Theme.key_statisticChartHintLine, resourcesProvider));
-        selectedLinePaint.setColor(Theme.getColor(Theme.key_statisticChartActiveLine, resourcesProvider));
-        pickerSelectorPaint.setColor(Theme.getColor(Theme.key_statisticChartActivePickerChart, resourcesProvider));
-        unactiveBottomChartPaint.setColor(Theme.getColor(Theme.key_statisticChartInactivePickerChart, resourcesProvider));
-        selectionBackgroundPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
-        ripplePaint.setColor(Theme.getColor(Theme.key_statisticChartRipple, resourcesProvider));
+        bottomSignaturePaint.setColor(Theme.getColor(Theme.key_statisticChartSignature));
+        linePaint.setColor(Theme.getColor(Theme.key_statisticChartHintLine));
+        selectedLinePaint.setColor(Theme.getColor(Theme.key_statisticChartActiveLine));
+        pickerSelectorPaint.setColor(Theme.getColor(Theme.key_statisticChartActivePickerChart));
+        unactiveBottomChartPaint.setColor(Theme.getColor(Theme.key_statisticChartInactivePickerChart));
+        selectionBackgroundPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        ripplePaint.setColor(Theme.getColor(Theme.key_statisticChartRipple));
         legendSignatureView.recolor();
 
         hintLinePaintAlpha = linePaint.getAlpha();
@@ -733,13 +726,13 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
             canvas.drawPath(RoundedRect(pathTmp, pickerRect.left,
                     pickerRect.top - DP_1,
                     pickerRect.left + DP_12,
-                    pickerRect.bottom + DP_1, DP_8, DP_8,
+                    pickerRect.bottom + DP_1, DP_6, DP_6,
                     true, false, false, true), pickerSelectorPaint);
 
 
             canvas.drawPath(RoundedRect(pathTmp, pickerRect.right - DP_12,
                     pickerRect.top - DP_1, pickerRect.right,
-                    pickerRect.bottom + DP_1, DP_8, DP_8,
+                    pickerRect.bottom + DP_1, DP_6, DP_6,
                     false, true, true, false), pickerSelectorPaint);
 
             canvas.drawRect(pickerRect.left + DP_12,
@@ -1596,16 +1589,10 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
 
         private RectF rectF = new RectF();
         private Paint xRefP = new Paint(Paint.ANTI_ALIAS_FLAG);
-        private Theme.ResourcesProvider resourcesProvider;
 
         public SharedUiComponents() {
-            this(null);
-        }
-
-        public SharedUiComponents(Theme.ResourcesProvider resourcesProvider) {
             xRefP.setColor(0);
             xRefP.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            this.resourcesProvider = resourcesProvider;
         }
 
         int k = 0;
@@ -1619,8 +1606,8 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
                 canvas = new Canvas(pickerRoundBitmap);
 
                 rectF.set(0, 0, w, h);
-                canvas.drawColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(6), AndroidUtilities.dp(6), xRefP);
+                canvas.drawColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(4), AndroidUtilities.dp(4), xRefP);
             }
 
 

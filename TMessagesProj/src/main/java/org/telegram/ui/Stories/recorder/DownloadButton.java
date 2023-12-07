@@ -39,7 +39,6 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.VideoEncodingService;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -344,7 +343,6 @@ public class DownloadButton extends ImageView {
 
                     if (finalSize > 0) {
                         onDone.run();
-                        VideoEncodingService.stop();
                         stop(false);
                     }
                 }

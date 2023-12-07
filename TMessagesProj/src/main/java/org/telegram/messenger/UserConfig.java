@@ -271,7 +271,7 @@ public class UserConfig extends BaseController {
                 NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.premiumStatusChangedGlobal);
 
                 getMediaDataController().loadPremiumPromo(false);
-                getMediaDataController().loadReactions(false, null);
+                getMediaDataController().loadReactions(false, true);
                 getMessagesController().getStoriesController().invalidateStoryLimit();
             });
         }

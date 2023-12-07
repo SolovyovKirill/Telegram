@@ -21,7 +21,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -1129,13 +1128,6 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         chatAttachAlert.drawNavigationBar = true;
         chatAttachAlert.setupPhotoPicker(LocaleController.getString("ChooseBackground", R.string.ChooseBackground));
         chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
-            long start;
-            @Override
-            public boolean selectItemOnClicking() {
-                start = System.currentTimeMillis();
-                return true;
-            }
-
             @Override
             public void didPressedButton(int button, boolean arg, boolean notify, int scheduleDate, boolean forceDocument) {
                 try {
@@ -1155,13 +1147,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
                             FileOutputStream stream = new FileOutputStream(currentWallpaperPath);
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 87, stream);
 
-                            ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(new WallpapersListActivity.FileWallpaper("", currentWallpaperPath, currentWallpaperPath), bitmap) {
-                                @Override
-                                public boolean insideBottomSheet() {
-                                    return true;
-                                }
-                            };
-                            themePreviewActivity.setInitialModes(false, false, .20f);
+                            ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(new WallpapersListActivity.FileWallpaper("", currentWallpaperPath, currentWallpaperPath), bitmap);
                             themePreviewActivity.setDialogId(chatActivity.getDialogId());
                             themePreviewActivity.setDelegate(() -> {
                                 chatAttachAlert.dismissInternal();
@@ -1177,12 +1163,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
 
             @Override
             public void onWallpaperSelected(Object object) {
-                ThemePreviewActivity wallpaperActivity = new ThemePreviewActivity(object, null, true, false) {
-                    @Override
-                    public boolean insideBottomSheet() {
-                        return true;
-                    }
-                };
+                ThemePreviewActivity wallpaperActivity = new ThemePreviewActivity(object, null, true, false);
                 wallpaperActivity.setDialogId(chatActivity.getDialogId());
                 wallpaperActivity.setDelegate(() -> {
                     chatAttachAlert.dismissInternal();
@@ -1275,16 +1256,16 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
             }
 
             @Override
-            public void switchDayNight(boolean animated) {
+            public void switchDayNight() {
                 forceDark = !forceDark;
                 if (selectedItem != null) {
                     isLightDarkChangeAnimation = true;
                     chatActivity.forceDisallowRedrawThemeDescriptions = true;
                     TLRPC.WallPaper wallpaper = hasChanges() ? null : themeDelegate.getCurrentWallpaper();
                     if (selectedItem.chatTheme.showAsDefaultStub) {
-                        themeDelegate.setCurrentTheme(null, wallpaper, animated, forceDark);
+                        themeDelegate.setCurrentTheme(null, wallpaper, true, forceDark);
                     } else {
-                        themeDelegate.setCurrentTheme(selectedItem.chatTheme, wallpaper, animated, forceDark);
+                        themeDelegate.setCurrentTheme(selectedItem.chatTheme, wallpaper, true, forceDark);
                     }
                     chatActivity.forceDisallowRedrawThemeDescriptions = false;
                 }
@@ -1299,7 +1280,6 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         params.onDismiss = () -> {
             overlayFragment = null;
         };
-        params.occupyNavigationBar = true;
         overlayFragment = themePreviewActivity;
         chatActivity.showAsSheet(themePreviewActivity, params);
     }

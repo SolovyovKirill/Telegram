@@ -15,12 +15,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Shader;
@@ -35,6 +33,7 @@ import android.text.Spanned;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
 import android.text.style.ReplacementSpan;
 import android.text.style.StyleSpan;
@@ -2176,7 +2175,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             if (messageString instanceof Spannable) {
                 Spannable messageStringSpannable = (Spannable) messageString;
                 for (Object span : messageStringSpannable.getSpans(0, messageStringSpannable.length(), Object.class)) {
-                    if (span instanceof ClickableSpan || span instanceof CodeHighlighting.Span || span instanceof TypefaceSpan || span instanceof CodeHighlighting.ColorSpan || span instanceof QuoteSpan || span instanceof QuoteSpan.QuoteStyleSpan || (span instanceof StyleSpan && ((StyleSpan) span).getStyle() == android.graphics.Typeface.BOLD)) {
+                    if (span instanceof ClickableSpan || span instanceof CodeHighlighting.Span || span instanceof CodeHighlighting.ColorSpan || span instanceof QuoteSpan || span instanceof QuoteSpan.QuoteStyleSpan || (span instanceof StyleSpan && ((StyleSpan) span).getStyle() == android.graphics.Typeface.BOLD)) {
                         messageStringSpannable.removeSpan(span);
                     }
                 }
@@ -2887,10 +2886,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 avatarImage.setImage(null, null, avatarDrawable, null, user, 0);
             } else {
                 if (useFromUserAsAvatar && message != null) {
-                    avatarDrawable.setInfo(currentAccount, message.getFromPeerObject());
+                    avatarDrawable.setInfo(message.getFromPeerObject());
                     avatarImage.setForUserOrChat(message.getFromPeerObject(), avatarDrawable);
                 } else if (user != null) {
-                    avatarDrawable.setInfo(currentAccount, user);
+                    avatarDrawable.setInfo(user);
                     if (UserObject.isReplyUser(user)) {
                         avatarDrawable.setAvatarType(AvatarDrawable.AVATAR_TYPE_REPLIES);
                         avatarImage.setImage(null, null, avatarDrawable, null, user, 0);
@@ -2901,7 +2900,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                         avatarImage.setForUserOrChat(user, avatarDrawable, null, true, VectorAvatarThumbDrawable.TYPE_SMALL, false);
                     }
                 } else if (chat != null) {
-                    avatarDrawable.setInfo(currentAccount, chat);
+                    avatarDrawable.setInfo(chat);
                     avatarImage.setForUserOrChat(chat, avatarDrawable);
                 }
             }
@@ -3388,7 +3387,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 canvas.save();
                 canvas.translate(nameLeft + nameLayoutTranslateX, AndroidUtilities.dp(useForceThreeLines || SharedConfig.useThreeLinesLayout ? 10 : 13));
                 SpoilerEffect.layoutDrawMaybe(nameLayout, canvas);
-                AnimatedEmojiSpan.drawAnimatedEmojis(canvas, nameLayout, animatedEmojiStackName, -.075f, null, 0, 0, 0, 1f, getAdaptiveEmojiColorFilter(0, nameLayout.getPaint().getColor()));
+                AnimatedEmojiSpan.drawAnimatedEmojis(canvas, nameLayout, animatedEmojiStackName, -.075f, null, 0, 0, 0, 1f);
                 canvas.restore();
                 if (nameLayoutEllipsizeByGradient && !nameLayoutFits) {
                     canvas.save();
@@ -3433,7 +3432,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 canvas.translate(messageNameLeft, messageNameTop);
                 try {
                     SpoilerEffect.layoutDrawMaybe(messageNameLayout, canvas);
-                    AnimatedEmojiSpan.drawAnimatedEmojis(canvas, messageNameLayout, animatedEmojiStack2, -.075f, null, 0, 0, 0, 1f, getAdaptiveEmojiColorFilter(1, messageNameLayout.getPaint().getColor()));
+                    AnimatedEmojiSpan.drawAnimatedEmojis(canvas, messageNameLayout, animatedEmojiStack2, -.075f, null, 0, 0, 0, 1f);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -3467,7 +3466,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                             canvas.save();
                             SpoilerEffect.clipOutCanvas(canvas, spoilers);
                             SpoilerEffect.layoutDrawMaybe(messageLayout, canvas);
-                            AnimatedEmojiSpan.drawAnimatedEmojis(canvas, messageLayout, animatedEmojiStack, -.075f, spoilers, 0, 0, 0, 1f, getAdaptiveEmojiColorFilter(2, messageLayout.getPaint().getColor()));
+                            AnimatedEmojiSpan.drawAnimatedEmojis(canvas, messageLayout, animatedEmojiStack, -.075f, spoilers, 0, 0, 0, 1f);
                             canvas.restore();
 
                             for (int i = 0; i < spoilers.size(); i++) {
@@ -3480,7 +3479,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                         }
                     } else {
                         SpoilerEffect.layoutDrawMaybe(messageLayout, canvas);
-                        AnimatedEmojiSpan.drawAnimatedEmojis(canvas, messageLayout, animatedEmojiStack, -.075f, null, 0, 0, 0, 1f, getAdaptiveEmojiColorFilter(2, messageLayout.getPaint().getColor()));
+                        AnimatedEmojiSpan.drawAnimatedEmojis(canvas, messageLayout, animatedEmojiStack, -.075f, null, 0, 0, 0, 1f);
                     }
                     messageLayout.getPaint().setAlpha(oldAlpha);
                     canvas.restore();
@@ -3575,7 +3574,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                         canvas.save();
                         SpoilerEffect.clipOutCanvas(canvas, spoilers2);
                         SpoilerEffect.layoutDrawMaybe(buttonLayout, canvas);
-                        AnimatedEmojiSpan.drawAnimatedEmojis(canvas, buttonLayout, animatedEmojiStack3, -.075f, spoilers2, 0, 0, 0, 1f, getAdaptiveEmojiColorFilter(3, buttonLayout.getPaint().getColor()));
+                        AnimatedEmojiSpan.drawAnimatedEmojis(canvas, buttonLayout, animatedEmojiStack3, -.075f, spoilers2, 0, 0, 0, 1f);
                         canvas.restore();
 
                         for (int i = 0; i < spoilers2.size(); i++) {
@@ -3588,7 +3587,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     }
                 } else {
                     SpoilerEffect.layoutDrawMaybe(buttonLayout, canvas);
-                    AnimatedEmojiSpan.drawAnimatedEmojis(canvas, buttonLayout, animatedEmojiStack3, -.075f, null, 0, 0, 0, 1f, getAdaptiveEmojiColorFilter(3, buttonLayout.getPaint().getColor()));
+                    AnimatedEmojiSpan.drawAnimatedEmojis(canvas, buttonLayout, animatedEmojiStack3, -.075f, null, 0, 0, 0, 1f);
                 }
                 canvas.restore();
             }
@@ -5234,18 +5233,5 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 }
             }
         }
-    }
-
-    private ColorFilter[] adaptiveEmojiColorFilter;
-    private int[] adaptiveEmojiColor;
-    private ColorFilter getAdaptiveEmojiColorFilter(int n, int color) {
-        if (adaptiveEmojiColorFilter == null) {
-            adaptiveEmojiColor = new int[4];
-            adaptiveEmojiColorFilter = new ColorFilter[4];
-        }
-        if (color != adaptiveEmojiColor[n] || adaptiveEmojiColorFilter[n] == null) {
-            adaptiveEmojiColorFilter[n] = new PorterDuffColorFilter(adaptiveEmojiColor[n] = color, PorterDuff.Mode.SRC_IN);
-        }
-        return adaptiveEmojiColorFilter[n];
     }
 }

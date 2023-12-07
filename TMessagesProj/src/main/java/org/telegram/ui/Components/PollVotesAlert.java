@@ -400,14 +400,14 @@ public class PollVotesAlert extends BottomSheet {
             }
 
             if (currentUser != null) {
-                avatarDrawable.setInfo(currentAccount, currentUser);
+                avatarDrawable.setInfo(currentUser);
                 if (currentUser.status != null) {
                     lastStatus = currentUser.status.expires;
                 } else {
                     lastStatus = 0;
                 }
             } else if (currentChat != null) {
-                avatarDrawable.setInfo(currentAccount, currentChat);
+                avatarDrawable.setInfo(currentChat);
             }
 
             if (currentUser != null) {

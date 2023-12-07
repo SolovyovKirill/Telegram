@@ -3,7 +3,6 @@ package org.telegram.ui.Components.Premium.boosts.adapters;
 import static org.telegram.tgnet.TLRPC.TL_payments_checkedGiftCode.NO_USER_ID;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.view.Gravity;
@@ -111,7 +110,6 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                 break;
             case HOLDER_TYPE_BUTTON:
                 view = new ActionBtnCell(context, resourcesProvider);
-                view.setPadding(0,0,0, AndroidUtilities.dp(14));
                 break;
             case HOLDER_TYPE_EMPTY:
                 view = new View(context);
@@ -169,8 +167,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                         cell.setText(LocaleController.getString("BoostingLinkNotActivated", R.string.BoostingLinkNotActivated));
                     } else {
                         //activated link
-                        cell.setFixedSize(14);
-                        cell.setText(null);
+                        cell.setText("");
                     }
                     return;
                 }

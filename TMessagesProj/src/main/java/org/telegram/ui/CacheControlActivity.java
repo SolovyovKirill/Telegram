@@ -3167,7 +3167,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
 
     @Override
     public boolean isSwipeBackEnabled(MotionEvent event) {
-        if (cachedMediaLayout != null && event != null) {
+        if (cachedMediaLayout != null) {
             cachedMediaLayout.getHitRect(AndroidUtilities.rectTmp2);
             if (!AndroidUtilities.rectTmp2.contains((int) event.getX(), (int) event.getY() - actionBar.getMeasuredHeight())) {
                 return true;

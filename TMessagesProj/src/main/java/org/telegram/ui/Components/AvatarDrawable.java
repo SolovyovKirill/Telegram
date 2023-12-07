@@ -8,8 +8,6 @@
 
 package org.telegram.ui.Components;
 
-import static org.telegram.messenger.AndroidUtilities.dp;
-
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -26,9 +24,9 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 
 import androidx.core.graphics.ColorUtils;
+import androidx.core.math.MathUtils;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -68,14 +66,12 @@ public class AvatarDrawable extends Drawable {
     private int gradientColor21, gradientColor22;
     private LinearGradient gradient2;
     private boolean drawAvatarBackground = true;
-    private boolean rotate45Background = false;
 
     public static final int AVATAR_TYPE_NORMAL = 0;
     public static final int AVATAR_TYPE_SAVED = 1;
     public static final int AVATAR_TYPE_ARCHIVED = 2;
     public static final int AVATAR_TYPE_SHARES = 3;
     public static final int AVATAR_TYPE_REPLIES = 12;
-    public static final int AVATAR_TYPE_STORY = 20;
 
     public static final int AVATAR_TYPE_FILTER_CONTACTS = 4;
     public static final int AVATAR_TYPE_FILTER_NON_CONTACTS = 5;
@@ -106,7 +102,7 @@ public class AvatarDrawable extends Drawable {
         this.resourcesProvider = resourcesProvider;
         namePaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         namePaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-        namePaint.setTextSize(dp(18));
+        namePaint.setTextSize(AndroidUtilities.dp(18));
     }
 
     public AvatarDrawable(TLRPC.User user) {
@@ -194,12 +190,8 @@ public class AvatarDrawable extends Drawable {
     }
 
     public void setInfo(TLRPC.User user) {
-        setInfo(UserConfig.selectedAccount, user);
-    }
-
-    public void setInfo(int currentAccount, TLRPC.User user) {
         if (user != null) {
-            setInfo(user.id, user.first_name, user.last_name, null, user != null && user.color != null ? UserObject.getColorId(user) : null, UserObject.getPeerColorForAvatar(currentAccount, user));
+            setInfo(user.id, user.first_name, user.last_name, null, (user.flags2 & 128) != 0 ? user.color : null);
             drawDeleted = UserObject.isDeleted(user);
         }
     }
@@ -214,23 +206,12 @@ public class AvatarDrawable extends Drawable {
         }
     }
 
-    public void setInfo(int currentAccount, TLObject object) {
-        if (object instanceof TLRPC.User) {
-            setInfo(currentAccount, (TLRPC.User) object);
-        } else if (object instanceof TLRPC.Chat) {
-            setInfo(currentAccount, (TLRPC.Chat) object);
-        } else if (object instanceof TLRPC.ChatInvite) {
-            setInfo(currentAccount, (TLRPC.ChatInvite) object);
-        }
-    }
-
     public void setScaleSize(float value) {
         scaleSize = value;
     }
 
     public void setAvatarType(int value) {
         avatarType = value;
-        rotate45Background = false;
         if (avatarType == AVATAR_TYPE_REGISTER) {
             hasGradient = false;
             color = color2 = Theme.getColor(Theme.key_chats_actionBackground);
@@ -241,11 +222,6 @@ public class AvatarDrawable extends Drawable {
             hasGradient = true;
             color = getThemedColor(Theme.key_avatar_backgroundSaved);
             color2 = getThemedColor(Theme.key_avatar_background2Saved);
-        } else if (avatarType == AVATAR_TYPE_STORY) {
-            rotate45Background = true;
-            hasGradient = true;
-            color = getThemedColor(Theme.key_stories_circle1);
-            color2 = getThemedColor(Theme.key_stories_circle2);
         } else if (avatarType == AVATAR_TYPE_SHARES) {
             hasGradient = true;
             color = getThemedColor(Theme.keys_avatar_background[getColorIndex(5)]);
@@ -287,7 +263,7 @@ public class AvatarDrawable extends Drawable {
             color = getThemedColor(Theme.keys_avatar_background[getColorIndex(4)]);
             color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(4)]);
         }
-        needApplyColorAccent = avatarType != AVATAR_TYPE_ARCHIVED && avatarType != AVATAR_TYPE_SAVED && avatarType != AVATAR_TYPE_STORY && avatarType != AVATAR_TYPE_REPLIES && avatarType != AVATAR_TYPE_OTHER_CHATS;
+        needApplyColorAccent = avatarType != AVATAR_TYPE_ARCHIVED && avatarType != AVATAR_TYPE_SAVED && avatarType != AVATAR_TYPE_REPLIES && avatarType != AVATAR_TYPE_OTHER_CHATS;
     }
 
     public void setArchivedAvatarHiddenProgress(float progress) {
@@ -299,20 +275,13 @@ public class AvatarDrawable extends Drawable {
     }
 
     public void setInfo(TLRPC.Chat chat) {
-        setInfo(UserConfig.selectedAccount, chat);
-    }
-    public void setInfo(int currentAccount, TLRPC.Chat chat) {
         if (chat != null) {
-            setInfo(chat.id, chat.title, null, null, chat != null && chat.color != null ? ChatObject.getColorId(chat) : null, ChatObject.getPeerColorForAvatar(currentAccount, chat));
+            setInfo(chat.id, chat.title, null, null, (chat.flags2 & 64) != 0 ? chat.color : null);
         }
     }
-
     public void setInfo(TLRPC.ChatInvite chat) {
-        setInfo(UserConfig.selectedAccount, chat);
-    }
-    public void setInfo(int currentAccount, TLRPC.ChatInvite chat) {
         if (chat != null) {
-            setInfo(0, chat.title, null, null, chat.chat != null && chat.chat.color != null ? ChatObject.getColorId(chat.chat) : null, ChatObject.getPeerColorForAvatar(currentAccount, chat.chat));
+            setInfo(0, chat.title, null, null, chat.chat != null && (chat.chat.flags2 & 64) != 0 ? chat.chat.color : null);
         }
     }
 
@@ -334,7 +303,7 @@ public class AvatarDrawable extends Drawable {
     }
 
     public void setInfo(long id, String firstName, String lastName) {
-        setInfo(id, firstName, lastName, null, null, null);
+        setInfo(id, firstName, lastName, null, null);
     }
 
     public int getColor() {
@@ -354,16 +323,13 @@ public class AvatarDrawable extends Drawable {
     }
 
     public void setInfo(long id, String firstName, String lastName, String custom) {
-        setInfo(id, firstName, lastName, custom, null, null);
+        setInfo(id, firstName, lastName, custom, null);
     }
 
-    public void setInfo(long id, String firstName, String lastName, String custom, Integer customColor, MessagesController.PeerColor profileColor) {
+    public void setInfo(long id, String firstName, String lastName, String custom, Integer customColor) {
         hasGradient = true;
         invalidateTextLayout = true;
-        if (profileColor != null) {
-            color = profileColor.getAvatarColor1();
-            color2 = profileColor.getAvatarColor2();
-        } else if (customColor != null) {
+        if (customColor != null) {
             if (customColor >= 14) {
                 MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
                 if (messagesController != null && messagesController.peerColors != null && messagesController.peerColors.getColor(customColor) != null) {
@@ -453,18 +419,11 @@ public class AvatarDrawable extends Drawable {
         canvas.translate(bounds.left, bounds.top);
 
         if (drawAvatarBackground) {
-            if (rotate45Background) {
-                canvas.save();
-                canvas.rotate(-45, size / 2.0f, size / 2.0f);
-            }
             if (roundRadius > 0) {
                 AndroidUtilities.rectTmp.set(0, 0, size, size);
                 canvas.drawRoundRect(AndroidUtilities.rectTmp, roundRadius, roundRadius, Theme.avatar_backgroundPaint);
             } else {
                 canvas.drawCircle(size / 2.0f, size / 2.0f, size / 2.0f, Theme.avatar_backgroundPaint);
-            }
-            if (rotate45Background) {
-                canvas.restore();
             }
         }
 
@@ -529,8 +488,6 @@ public class AvatarDrawable extends Drawable {
                 drawable = Theme.avatarDrawables[15];
             } else if (avatarType == AVATAR_TYPE_UNCLAIMED) {
                 drawable = Theme.avatarDrawables[16];
-            } else if (avatarType == AVATAR_TYPE_STORY) {
-                drawable = Theme.avatarDrawables[17];
             } else {
                 drawable = Theme.avatarDrawables[9];
             }
@@ -551,8 +508,8 @@ public class AvatarDrawable extends Drawable {
         } else if (drawDeleted && Theme.avatarDrawables[1] != null) {
             int w = Theme.avatarDrawables[1].getIntrinsicWidth();
             int h = Theme.avatarDrawables[1].getIntrinsicHeight();
-            if (w > size - dp(6) || h > size - dp(6)) {
-                float scale = size / (float) dp(50);
+            if (w > size - AndroidUtilities.dp(6) || h > size - AndroidUtilities.dp(6)) {
+                float scale = size / (float) AndroidUtilities.dp(50);
                 w *= scale;
                 h *= scale;
             }
@@ -565,10 +522,10 @@ public class AvatarDrawable extends Drawable {
                 invalidateTextLayout = false;
                 if (stringBuilder.length() > 0) {
                     CharSequence text = stringBuilder.toString().toUpperCase();
-                    text = Emoji.replaceEmoji(text, namePaint.getFontMetricsInt(), dp(16), true);
+                    text = Emoji.replaceEmoji(text, namePaint.getFontMetricsInt(), AndroidUtilities.dp(16), true);
                     if (textLayout == null || !TextUtils.equals(text, textLayout.getText())) {
                         try {
-                            textLayout = new StaticLayout(text, namePaint, dp(100), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                            textLayout = new StaticLayout(text, namePaint, AndroidUtilities.dp(100), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                             if (textLayout.getLineCount() > 0) {
                                 textLeft = textLayout.getLineLeft(0);
                                 textWidth = textLayout.getLineWidth(0);
@@ -583,7 +540,7 @@ public class AvatarDrawable extends Drawable {
                 }
             }
             if (textLayout != null) {
-                float scale = size / (float) dp(50);
+                float scale = size / (float) AndroidUtilities.dp(50);
                 canvas.scale(scale, scale, size / 2f, size / 2f) ;
                 canvas.translate((size - textWidth) / 2 - textLeft, (size - textHeight) / 2);
 

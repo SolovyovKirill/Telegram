@@ -447,7 +447,7 @@ public class StickerCategoriesListView extends RecyclerListView {
 //        }
     }
 
-    private final RectF rect1 = new RectF(), rect2 = new RectF(), rect3 = new RectF();
+    private RectF rect1 = new RectF(), rect2 = new RectF(), rect3 = new RectF();
     private void drawSelectedHighlight(Canvas canvas) {
         float alpha = selectedAlpha.set(selectedCategoryIndex >= 0 ? 1 : 0);
         float index = selectedCategoryIndex >= 0 ? selectedIndex.set(selectedCategoryIndex) : selectedIndex.get();

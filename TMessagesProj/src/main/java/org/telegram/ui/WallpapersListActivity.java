@@ -141,7 +141,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
     private HashMap<Long, Object> patternsDict = new HashMap<>();
     private boolean loadingWallpapers;
 
-    private final LongSparseArray<Object> selectedWallPapers = new LongSparseArray<>();
+    private LongSparseArray<Object> selectedWallPapers = new LongSparseArray<>();
     private boolean scrolling;
 
     private final static int forward = 3;
@@ -963,12 +963,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                     object = colorWallpaper;
                 }
             }
-            ThemePreviewActivity wallpaperActivity = new ThemePreviewActivity(object, null, true, false) {
-                @Override
-                public boolean insideBottomSheet() {
-                    return true;
-                }
-            };
+            ThemePreviewActivity wallpaperActivity = new ThemePreviewActivity(object, null, true, false);
             if (currentType == TYPE_COLOR || dialogId != 0) {
                 wallpaperActivity.setDelegate(WallpapersListActivity.this::removeSelfFromStack);
             }
@@ -977,20 +972,8 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             }
             wallpaperActivity.setPatterns(patterns);
             wallpaperActivity.setDialogId(dialogId);
-            showAsSheet(wallpaperActivity);
+            presentFragment(wallpaperActivity);
         }
-    }
-
-    private void showAsSheet(ThemePreviewActivity themePreviewActivity) {
-        BaseFragment.BottomSheetParams params = new BaseFragment.BottomSheetParams();
-        params.transitionFromLeft = true;
-        params.allowNestedScroll = false;
-        themePreviewActivity.setResourceProvider(resourceProvider);
-        params.onOpenAnimationFinished = () -> {
-            PhotoViewer.getInstance().closePhoto(false, false);
-        };
-        params.occupyNavigationBar = true;
-        showAsSheet(themePreviewActivity, params);
     }
 
     private String getWallPaperSlug(Object object) {

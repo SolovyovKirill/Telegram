@@ -321,7 +321,7 @@ public class GroupCreateUserCell extends FrameLayout {
                         return;
                     }
                 }
-                avatarDrawable.setInfo(currentAccount, currentUser);
+                avatarDrawable.setInfo(currentUser);
                 lastStatus = currentUser.status != null ? currentUser.status.expires : 0;
 
                 if (currentName != null) {
@@ -374,7 +374,7 @@ public class GroupCreateUserCell extends FrameLayout {
                     }
                 }
 
-                avatarDrawable.setInfo(currentAccount, currentChat);
+                avatarDrawable.setInfo(currentChat);
 
                 if (currentName != null) {
                     lastName = null;

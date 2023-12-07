@@ -1165,7 +1165,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 avatarImage.clearImage();
                 return;
             }
-            avatarDrawable.setInfo(currentAccount, object);
+            avatarDrawable.setInfo(object);
             avatarImage.setForUserOrChat(object, avatarDrawable);
             if (mini) {
                 return;
@@ -1640,7 +1640,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                         user = null;
                     }
                     if (object != null) {
-                        crossfadeAvatarDrawable.setInfo(currentAccount, object);
+                        crossfadeAvatarDrawable.setInfo(object);
                         crossfageToAvatarImage.setForUserOrChat(object, crossfadeAvatarDrawable);
                     }
                 } else {

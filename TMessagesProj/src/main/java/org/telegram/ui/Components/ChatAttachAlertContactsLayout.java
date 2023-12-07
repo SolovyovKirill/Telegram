@@ -225,7 +225,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             }
 
             if (currentUser != null) {
-                avatarDrawable.setInfo(currentAccount, currentUser);
+                avatarDrawable.setInfo(currentUser);
                 if (currentUser.status != null) {
                     lastStatus = currentUser.status.expires;
                 } else {

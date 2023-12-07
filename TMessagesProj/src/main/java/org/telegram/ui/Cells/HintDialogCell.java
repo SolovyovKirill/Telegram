@@ -40,7 +40,6 @@ public class HintDialogCell extends FrameLayout {
     private TextView nameTextView;
     private AvatarDrawable avatarDrawable = new AvatarDrawable();
     private RectF rect = new RectF();
-    private Theme.ResourcesProvider resourcesProvider;
 
     private int lastUnreadCount;
     private TLRPC.User currentUser;
@@ -54,7 +53,7 @@ public class HintDialogCell extends FrameLayout {
     CheckBox2 checkBox;
     private final boolean drawCheckbox;
 
-    public HintDialogCell(Context context, boolean drawCheckbox, Theme.ResourcesProvider resourcesProvider) {
+    public HintDialogCell(Context context, boolean drawCheckbox) {
         super(context);
         this.drawCheckbox = drawCheckbox;
 
@@ -70,7 +69,7 @@ public class HintDialogCell extends FrameLayout {
             }
         };
         NotificationCenter.listenEmojiLoading(nameTextView);
-        nameTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+        nameTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         nameTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
         nameTextView.setMaxLines(1);
         nameTextView.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
@@ -78,13 +77,13 @@ public class HintDialogCell extends FrameLayout {
         nameTextView.setEllipsize(TextUtils.TruncateAt.END);
         addView(nameTextView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT, Gravity.LEFT | Gravity.TOP, 6, 64, 6, 0));
 
-        counterView = new CounterView(context, resourcesProvider);
+        counterView = new CounterView(context, null);
         addView(counterView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 28, Gravity.TOP,0 ,4,0,0));
         counterView.setColors(Theme.key_chats_unreadCounterText, Theme.key_chats_unreadCounter);
         counterView.setGravity(Gravity.RIGHT);
 
         if (drawCheckbox) {
-            checkBox = new CheckBox2(context, 21, resourcesProvider);
+            checkBox = new CheckBox2(context, 21);
             checkBox.setColor(Theme.key_dialogRoundCheckBox, Theme.key_dialogBackground, Theme.key_dialogRoundCheckBoxCheck);
             checkBox.setDrawUnchecked(false);
             checkBox.setDrawBackgroundAsArc(4);
@@ -132,16 +131,16 @@ public class HintDialogCell extends FrameLayout {
     public void update() {
         if (DialogObject.isUserDialog(dialogId)) {
             currentUser = MessagesController.getInstance(currentAccount).getUser(dialogId);
-            avatarDrawable.setInfo(currentAccount, currentUser);
+            avatarDrawable.setInfo(currentUser);
         } else {
             TLRPC.Chat chat = MessagesController.getInstance(currentAccount).getChat(-dialogId);
-            avatarDrawable.setInfo(currentAccount, chat);
+            avatarDrawable.setInfo(chat);
             currentUser = null;
         }
     }
 
     public void setColors(int textColorKey, int backgroundColorKey) {
-        nameTextView.setTextColor(Theme.getColor(textColorKey, resourcesProvider));
+        nameTextView.setTextColor(Theme.getColor(textColorKey));
         this.backgroundColorKey = backgroundColorKey;
         checkBox.setColor(Theme.key_dialogRoundCheckBox, backgroundColorKey, Theme.key_dialogRoundCheckBoxCheck);
     }
@@ -161,7 +160,7 @@ public class HintDialogCell extends FrameLayout {
             } else {
                 nameTextView.setText("");
             }
-            avatarDrawable.setInfo(currentAccount, currentUser);
+            avatarDrawable.setInfo(currentUser);
             imageView.setForUserOrChat(currentUser, avatarDrawable);
         } else {
             TLRPC.Chat chat = MessagesController.getInstance(currentAccount).getChat(-uid);
@@ -172,7 +171,7 @@ public class HintDialogCell extends FrameLayout {
             } else {
                 nameTextView.setText("");
             }
-            avatarDrawable.setInfo(currentAccount, chat);
+            avatarDrawable.setInfo(chat);
             currentUser = null;
             imageView.setForUserOrChat(chat, avatarDrawable);
         }
